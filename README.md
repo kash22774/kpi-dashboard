@@ -3,211 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GM KPI Dashboard 2026</title>
+<title>GM KPI Dashboard 2026 - Editable Fixed</title>
 <style>
   :root{
-    --bg:#0b1020; --panel:#121933; --panel2:#162149; --line:#2b3967; --text:#eef3ff; --muted:#aeb9d8;
+    --bg:#0b1020;
+    --panel:#121933;
+    --line:#2b3967;
+    --text:#eef3ff;
+    --muted:#aeb9d8;
   }
   *{box-sizing:border-box}
   body{
-    margin:0; font-family:Inter,Arial,sans-serif;
-    background:linear-gradient(180deg,#09101f,#101935); color:var(--text);
+    margin:0;
+    font-family:Inter,Arial,sans-serif;
+    background:linear-gradient(180deg,#09101f,#101935);
+    color:var(--text);
   }
-  .container{max-width:1820px; margin:0 auto; padding:22px}
-  .hero,.card,.section,.summary-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:18px;
+  .container{max-width:1800px;margin:0 auto;padding:22px}
+  .hero,.card,.section{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
   }
   .hero{padding:24px}
-  .hero h1{margin:0 0 8px; font-size:30px}
-  .hero p{margin:0; color:var(--muted); line-height:1.55}
-  .toolbar{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0}
+  .hero h1{margin:0 0 8px;font-size:30px}
+  .hero p{margin:0;color:var(--muted);line-height:1.55}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
   button{
     background:linear-gradient(180deg,#284486,#1c2f62);
-    color:#fff; border:1px solid #4465b4; border-radius:12px;
-    padding:10px 14px; font-weight:800; cursor:pointer;
+    color:#fff;
+    border:1px solid #4465b4;
+    border-radius:12px;
+    padding:10px 14px;
+    font-weight:800;
+    cursor:pointer
   }
-  button.secondary{background:#182247; border-color:var(--line)}
-  .topgrid{display:grid; grid-template-columns:1.2fr .9fr .9fr .9fr; gap:16px; margin:18px 0}
+  button.secondary{background:#182247;border-color:var(--line)}
+  .topgrid{display:grid;grid-template-columns:1.2fr .9fr .9fr .9fr;gap:16px;margin:18px 0}
   .card{padding:18px}
-  .label{font-size:12px; color:#d9e4ff; text-transform:uppercase; letter-spacing:.9px}
-  .big{font-size:34px; font-weight:900; line-height:1.05; margin-top:8px}
-  .sub{margin-top:8px; color:var(--muted); font-size:13px; line-height:1.45}
-  .scorebar{height:12px; background:#0f1530; border:1px solid #334271; border-radius:999px; overflow:hidden; margin-top:12px}
-  .fill{height:100%; background:linear-gradient(90deg,#f75d59 0%,#f5b342 45%,#19c37d 100%)}
+  .label{font-size:12px;color:#d9e4ff;text-transform:uppercase;letter-spacing:.9px}
+  .big{font-size:34px;font-weight:900;line-height:1.05;margin-top:8px}
+  .sub{margin-top:8px;color:var(--muted);font-size:13px;line-height:1.45}
+  .scorebar{height:12px;background:#0f1530;border:1px solid #334271;border-radius:999px;overflow:hidden;margin-top:12px}
+  .fill{height:100%;background:linear-gradient(90deg,#f75d59 0%,#f5b342 45%,#19c37d 100%)}
   .pill{
-    display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px;
-    font-weight:900; letter-spacing:.2px; white-space:nowrap
+    display:inline-block;padding:6px 10px;border-radius:999px;
+    font-size:12px;font-weight:900;letter-spacing:.2px;white-space:nowrap
   }
-  .ex{background:rgba(25,195,125,.15); border:1px solid rgba(25,195,125,.3); color:#82efc9}
-  .vg{background:rgba(125,178,255,.15); border:1px solid rgba(125,178,255,.3); color:#bfd7ff}
-  .gd{background:rgba(245,179,66,.15); border:1px solid rgba(245,179,66,.3); color:#ffd793}
-  .wk{background:rgba(247,93,89,.15); border:1px solid rgba(247,93,89,.3); color:#ffaca8}
-  .ni{background:rgba(247,93,89,.23); border:1px solid rgba(247,93,89,.4); color:#ffd8d6}
-  .legend{display:flex; gap:8px; flex-wrap:wrap}
-  .section{margin-top:18px; overflow:hidden}
+  .ex{background:rgba(25,195,125,.15);border:1px solid rgba(25,195,125,.3);color:#82efc9}
+  .vg{background:rgba(125,178,255,.15);border:1px solid rgba(125,178,255,.3);color:#bfd7ff}
+  .gd{background:rgba(245,179,66,.15);border:1px solid rgba(245,179,66,.3);color:#ffd793}
+  .wk{background:rgba(247,93,89,.15);border:1px solid rgba(247,93,89,.3);color:#ffaca8}
+  .ni{background:rgba(247,93,89,.23);border:1px solid rgba(247,93,89,.4);color:#ffd8d6}
+  .legend{display:flex;gap:8px;flex-wrap:wrap}
+  .section{margin-top:18px;overflow:hidden}
   .section-head{
-    display:grid; grid-template-columns:1.3fr .8fr .8fr .8fr; gap:14px;
-    padding:18px; background:linear-gradient(180deg,#162149,#101834);
+    display:grid;grid-template-columns:1.3fr .8fr .8fr .8fr;gap:14px;
+    padding:18px;background:linear-gradient(180deg,#162149,#101834);
     border-bottom:1px solid var(--line)
   }
-  .section h2{margin:0; font-size:24px}
-  .section-meta{color:var(--muted); margin-top:6px; line-height:1.5; font-size:13px}
-  .table-wrap{overflow:auto}
-  table{width:100%; border-collapse:collapse; min-width:1560px}
-  th,td{padding:10px 8px; border-bottom:1px solid var(--line); vertical-align:top}
+  .section h2{margin:0;font-size:24px}
+  .section-meta{color:var(--muted);margin-top:6px;line-height:1.5;font-size:13px}
+  .table-wrap{overflow:auto;padding:0}
+  table{width:100%;border-collapse:collapse;min-width:1500px}
+  th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
   th{
-    background:#141d3d; text-align:left; font-size:12px; color:#dbe4ff;
-    position:sticky; top:0; z-index:1;
+    background:#141d3d;
+    text-align:left;
+    font-size:12px;
+    color:#dbe4ff;
+    position:sticky;
+    top:0;
+    z-index:1;
   }
   td{font-size:13px}
   td input{
-    display:block; width:78px; min-width:78px; padding:8px 8px;
-    background:#0f1530; color:#fff; border:1px solid #31406e; border-radius:8px; outline:none;
+    display:block;
+    width:78px;
+    min-width:78px;
+    padding:8px 8px;
+    background:#0f1530;
+    color:#fff;
+    border:1px solid #31406e;
+    border-radius:8px;
+    outline:none;
+    pointer-events:auto;
   }
-  td input:focus{border-color:#7db2ff; box-shadow:0 0 0 2px rgba(125,178,255,.15)}
-  .num{text-align:right; white-space:nowrap}
-  .mini{font-size:12px; color:var(--muted); margin-top:3px}
-  .note{padding:14px 18px; color:var(--muted); font-size:13px; line-height:1.6; border-top:1px solid var(--line); background:#0f1631}
-  .footer{margin:18px 0 8px; color:var(--muted); font-size:12px}
-  .cell-wrap{display:flex; align-items:center; gap:6px}
-  td input.kpi-input{width:78px; min-width:78px}
-  .comment-btn{
-    width:26px; height:26px; border-radius:8px; border:1px solid #3b4c7e;
-    background:#162149; color:#dbe4ff; font-size:14px; line-height:1; cursor:pointer;
-    display:inline-flex; align-items:center; justify-content:center; padding:0;
+  td input:focus{
+    border-color:#7db2ff;
+    box-shadow:0 0 0 2px rgba(125,178,255,.15)
   }
-  .comment-btn:hover{filter:brightness(1.08)}
-  .comment-btn.has-comment{
-    border-color:#7db2ff; box-shadow:0 0 0 1px rgba(125,178,255,.25) inset; background:#1c2a58;
-  }
-  .comment-btn.output-btn{width:24px; height:24px; font-size:13px}
-  .out-wrap{display:flex; align-items:center; justify-content:flex-end; gap:6px}
-  .head-wrap{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
-  .summary-card{margin-top:18px; padding:18px}
-  .summary-card h3{margin:0 0 12px; font-size:18px}
-  .summary-empty{color:var(--muted); font-size:13px}
-  .comment-list{display:grid; gap:10px}
-  .comment-item{
-    border:1px solid var(--line); border-radius:14px; padding:12px 14px; background:#0f1631;
-  }
-  .comment-item-head{display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:6px}
-  .comment-key{font-weight:800}
-  .comment-body{white-space:pre-wrap; color:#dfe8ff; line-height:1.5; font-size:13px}
-  .modal-backdrop{
-    position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center;
-    z-index:9999; padding:20px
-  }
-  .modal{
-    width:min(760px, 96vw); background:#101834; border:1px solid #31406e; border-radius:18px;
-    box-shadow:0 24px 60px rgba(0,0,0,.45); overflow:hidden
-  }
-  .modal-head{
-    padding:16px 18px; border-bottom:1px solid #2b3967; background:linear-gradient(180deg,#162149,#101834)
-  }
-  .modal-title{font-size:18px; font-weight:800}
-  .modal-sub{font-size:12px; color:#aeb9d8; margin-top:4px}
-  .modal-body{padding:16px 18px}
-  .comment-text{
-    width:100%; min-height:180px; resize:vertical; padding:12px 14px; border-radius:12px;
-    border:1px solid #31406e; background:#0f1530; color:#eef3ff; outline:none; font:inherit
-  }
-  .modal-actions{display:flex; justify-content:space-between; gap:10px; padding:0 18px 18px}
-  .btn-row{display:flex; gap:10px}
+  .num{text-align:right;white-space:nowrap}
+  .mini{font-size:12px;color:var(--muted);margin-top:3px}
+  .note{padding:14px 18px;color:var(--muted);font-size:13px;line-height:1.6;border-top:1px solid var(--line);background:#0f1631}
+  .footer{margin:18px 0 8px;color:var(--muted);font-size:12px}
   @media (max-width:1200px){.topgrid,.section-head{grid-template-columns:1fr}}
-
-  body.app-shell{min-height:100vh}
-  .container{padding:18px 18px 110px}
-  .hero{position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); background:rgba(18,25,51,.88); box-shadow:0 10px 30px rgba(0,0,0,.18)}
-  .hero h1{font-size:26px; letter-spacing:-.02em}
-  .toolbar{position:sticky; top:96px; z-index:19; padding:10px; margin:14px 0 18px; background:rgba(11,16,32,.72); backdrop-filter:blur(12px); border:1px solid rgba(67,87,141,.35); border-radius:18px}
-  button{min-height:42px; box-shadow:0 8px 24px rgba(0,0,0,.18)}
-  .card,.section,.summary-card,.hero{box-shadow:0 10px 28px rgba(0,0,0,.16)}
-  .table-wrap{padding:10px}
-  .summary-card{position:relative}
-  .app-bottom-bar{display:none}
-  @media (max-width:900px){
-    body{background:linear-gradient(180deg,#060b18,#0d1430 45%,#0f1837)}
-    .container{padding:12px 12px 104px; max-width:100%}
-    .hero{padding:16px 16px 14px; border-radius:20px}
-    .hero h1{font-size:22px; margin:0}
-    .toolbar{top:78px; gap:8px; padding:8px; margin:12px 0 14px; overflow:auto; flex-wrap:nowrap}
-    .toolbar button{white-space:nowrap; flex:0 0 auto; padding:10px 12px; border-radius:14px}
-    .topgrid{grid-template-columns:1fr 1fr; gap:10px; margin:14px 0}
-    .card{padding:14px; border-radius:20px}
-    .big{font-size:26px}
-    .sub{font-size:12px}
-    .section{border-radius:22px; margin-top:14px}
-    .section-head{padding:14px; gap:10px}
-    .section h2{font-size:20px}
-    .table-wrap{overflow:visible; padding:12px}
-    table, thead, tbody, th, td, tr{display:block; width:100%}
-    thead{display:none}
-    table{min-width:0}
-    tbody{display:grid; gap:12px}
-    tr{background:#0f1631; border:1px solid #2b3967; border-radius:18px; padding:12px; box-shadow:0 8px 20px rgba(0,0,0,.12)}
-    td{display:flex; justify-content:space-between; gap:12px; align-items:flex-start; border-bottom:1px dashed rgba(67,87,141,.35); padding:8px 0; font-size:12px}
-    td:last-child{border-bottom:0}
-    td::before{content:attr(data-label); min-width:96px; max-width:96px; color:#aeb9d8; font-size:11px; text-transform:uppercase; letter-spacing:.06em; line-height:1.4}
-    td > *{flex:1}
-    td input, td input.kpi-input{width:100%; min-width:0; max-width:none}
-    .cell-wrap,.out-wrap{width:100%; justify-content:flex-end}
-    .cell-wrap{align-items:center}
-    .out-wrap span{text-align:right; display:block; width:100%}
-    .head-wrap{justify-content:space-between}
-    .comment-btn{flex:0 0 auto}
-    .modal{width:min(96vw,560px); border-radius:20px}
-    .comment-text{min-height:150px}
-    .summary-card{padding:14px; border-radius:20px}
-    .footer{padding:0 4px 8px; text-align:center}
-    .app-bottom-bar{display:flex; position:fixed; left:12px; right:12px; bottom:12px; z-index:30; gap:10px; padding:10px; background:rgba(16,24,52,.9); border:1px solid rgba(67,87,141,.4); border-radius:20px; backdrop-filter:blur(16px); box-shadow:0 18px 36px rgba(0,0,0,.28)}
-    .app-bottom-bar button{flex:1; margin:0; font-size:12px; padding:10px 8px}
-  }
-  @media (max-width:560px){
-    .topgrid{grid-template-columns:1fr}
-    td{flex-direction:column; align-items:stretch; gap:6px}
-    td::before{min-width:0; max-width:none}
-    .cell-wrap,.out-wrap{justify-content:flex-start}
-    .out-wrap span{text-align:left}
-  }
-
-
-  .section-jump{display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 4px}
-  .jump-chip{padding:8px 12px; border:1px solid #3b4c7e; border-radius:999px; background:#101834; color:#dfe8ff; font-size:12px; font-weight:700; text-decoration:none}
-  .jump-chip:hover{filter:brightness(1.08)}
-  .section-toggle{display:none}
-  .section-body{display:block}
-  @media (max-width:900px){
-    .section-toggle{display:flex; width:100%; align-items:center; justify-content:space-between; gap:12px; background:transparent; border:0; padding:0; box-shadow:none; min-height:auto}
-    .section-toggle .toggle-title{font-size:20px; font-weight:800; text-align:left}
-    .section-toggle .toggle-icon{width:34px; height:34px; border-radius:12px; border:1px solid #3b4c7e; display:flex; align-items:center; justify-content:center; background:#162149; font-size:18px}
-    .section-head > div:first-child h2,.section-head > div:first-child > .section-meta{display:none}
-    .section-body.collapsed{display:none}
-  }
-
 </style>
 </head>
-<body class="app-shell">
+<body>
 <div class="container">
   <div class="hero">
-    <h1>GM KPI Dashboard 2026</h1>
-    
+    <h1>GM KPI Dashboard 2026 - Editable Fixed</h1>
+    <p>This version removes the interaction problem. Monthly cells are simple editable inputs. Quarterly, YTD, section scores, and overall score update as you type.</p>
   </div>
 
   <div class="toolbar">
     <button onclick="loadExample()">Reload Example</button>
     <button class="secondary" onclick="clearAll()">Clear All</button>
-    <button class="secondary" onclick="exportComments()">Export Comments JSON</button>
   </div>
-
-  <div class="section-jump" id="sectionJump"></div>
 
   <div class="topgrid">
     <div class="card">
       <div class="label">Overall Weighted Score</div>
-      <div class="head-wrap">
-        <div class="big" id="overallScore">0.0%</div>
-        <button type="button" class="comment-btn" data-comment-key="overall_score" onclick="openCommentModal('overall_score','Overall Weighted Score','Overall')">+</button>
-      </div>
+      <div class="big" id="overallScore">0.0%</div>
       <div class="sub" id="overallRating">Awaiting input</div>
       <div class="scorebar"><div class="fill" id="overallFill" style="width:0%"></div></div>
     </div>
@@ -234,40 +142,7 @@
   </div>
 
   <div id="sections"></div>
-
-  <div class="summary-card">
-    <h3>Commentary Summary</h3>
-    <div id="commentsSummary" class="summary-empty">No comments saved yet.</div>
-  </div>
-
-  <div class="footer">Section weights follow the playbook exactly: Financial 25%, Manufacturing 25%, Sales & Pipeline 25%, People & Organization 15%, Digitalization 5%, PR & Industry 5%.</div>
-</div>
-
-<div class="app-bottom-bar">
-  <button onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button>
-  <button class="secondary" onclick="document.getElementById('commentsSummary').scrollIntoView({behavior:'smooth', block:'start'})">Comments</button>
-  <button onclick="exportComments()">Export</button>
-</div>
-
-<div class="modal-backdrop" id="commentModal">
-  <div class="modal">
-    <div class="modal-head">
-      <div class="modal-title" id="commentModalTitle">Comment</div>
-      <div class="modal-sub" id="commentModalSub">Add explanation for this KPI period</div>
-    </div>
-    <div class="modal-body">
-      <textarea id="commentText" class="comment-text" placeholder="Add commentary, reason for variance, action taken, risk, or context..."></textarea>
-    </div>
-    <div class="modal-actions">
-      <div class="btn-row">
-        <button type="button" onclick="saveComment()">Save Comment</button>
-        <button type="button" class="secondary" onclick="clearComment()">Clear Comment</button>
-      </div>
-      <div class="btn-row">
-        <button type="button" class="secondary" onclick="closeCommentModal()">Close</button>
-      </div>
-    </div>
-  </div>
+  <div class="footer">Section weights follow the playbook exactly: Financial 25%, Manufacturing 25%, Sales & Pipeline 25%, People & Organization 15%, Digitalization 5%, PR & Industry 5%. fileciteturn1file0</div>
 </div>
 
 <script>
@@ -317,9 +192,6 @@ const sections = [
    ]}
 ];
 
-let commentStore = {};
-let activeCommentKey = null;
-
 function sum(arr){ return arr.reduce((a,b)=>a+b,0); }
 function avg(arr){ return arr.length ? sum(arr)/arr.length : 0; }
 function num(v){ const n=parseFloat(v); return isNaN(n)?0:n; }
@@ -351,121 +223,12 @@ function ratingClass(p){
 function pill(p){ const r=ratingClass(p); return `<span class="pill ${r[1]}">${r[0]}</span>`; }
 function fmt(v){ return Number(v).toLocaleString(undefined,{minimumFractionDigits:1,maximumFractionDigits:1}); }
 
-function loadComments(){
-  try {
-    commentStore = JSON.parse(localStorage.getItem("gmKpiCommentsComplete") || "{}");
-  } catch(e){
-    commentStore = {};
-  }
-}
-function persistComments(){
-  try {
-    localStorage.setItem("gmKpiCommentsComplete", JSON.stringify(commentStore));
-  } catch(e){}
-}
-function refreshCommentButtons(){
-  document.querySelectorAll("[data-comment-key]").forEach(btn => {
-    const key = btn.getAttribute("data-comment-key");
-    const val = (commentStore[key] || "").trim();
-    btn.classList.toggle("has-comment", !!val);
-    btn.textContent = val ? "•" : "+";
-    btn.title = val ? "View / edit comment" : "Add comment";
-  });
-  renderCommentSummary();
-}
-function openCommentModal(key, label, periodLabel){
-  activeCommentKey = key;
-  document.getElementById("commentModalTitle").textContent = label + " | " + periodLabel;
-  document.getElementById("commentModalSub").textContent = "Add explanation, reason for variance, action, dependency, or context.";
-  document.getElementById("commentText").value = commentStore[key] || "";
-  document.getElementById("commentModal").style.display = "flex";
-  setTimeout(() => document.getElementById("commentText").focus(), 50);
-}
-function closeCommentModal(){
-  document.getElementById("commentModal").style.display = "none";
-}
-function saveComment(){
-  if(!activeCommentKey) return;
-  const val = document.getElementById("commentText").value || "";
-  if(val.trim()){
-    commentStore[activeCommentKey] = val;
-  } else {
-    delete commentStore[activeCommentKey];
-  }
-  persistComments();
-  refreshCommentButtons();
-  closeCommentModal();
-}
-function clearComment(){
-  if(!activeCommentKey) return;
-  delete commentStore[activeCommentKey];
-  persistComments();
-  refreshCommentButtons();
-  document.getElementById("commentText").value = "";
-  closeCommentModal();
-}
-function renderCommentSummary(){
-  const host = document.getElementById("commentsSummary");
-  const entries = Object.entries(commentStore).filter(([,v]) => (v||"").trim());
-  if(!entries.length){
-    host.className = "summary-empty";
-    host.textContent = "No comments saved yet.";
-    return;
-  }
-  host.className = "comment-list";
-  host.innerHTML = entries.map(([k,v]) => `
-    <div class="comment-item">
-      <div class="comment-item-head">
-        <div class="comment-key">${k}</div>
-      </div>
-      <div class="comment-body">${escapeHtml(v)}</div>
-    </div>
-  `).join("");
-}
-function exportComments(){
-  const blob = new Blob([JSON.stringify(commentStore, null, 2)], {type:"application/json"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "gm_kpi_comments.json";
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-function escapeHtml(s){
-  return String(s)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;");
-}
-function renderSectionJump(){
-  const host = document.getElementById("sectionJump");
-  if(!host) return;
-  host.innerHTML = sections.map(s => `<a class="jump-chip" href="#section_${s.id}">${s.title}</a>`).join("");
-}
-function toggleSection(sectionId){
-  const body = document.getElementById(`section_body_${sectionId}`);
-  const icon = document.getElementById(`toggle_icon_${sectionId}`);
-  if(!body || !icon) return;
-  body.classList.toggle('collapsed');
-  icon.textContent = body.classList.contains('collapsed') ? '+' : '−';
-}
-window.addEventListener("keydown", function(e){
-  if(e.key === "Escape") closeCommentModal();
-});
-
 function render(){
-  renderSectionJump();
   const host = document.getElementById("sections");
   host.innerHTML = sections.map(section => `
-    <div class="section" id="section_${section.id}">
+    <div class="section">
       <div class="section-head">
         <div>
-          <button type="button" class="section-toggle" onclick="toggleSection('${section.id}')">
-            <div>
-              <div class="toggle-title">${section.title}</div>
-              <div class="section-meta">${section.focus}. ${section.redline}</div>
-            </div>
-            <div class="toggle-icon" id="toggle_icon_${section.id}">−</div>
-          </button>
           <h2>${section.title}</h2>
           <div class="section-meta">${section.focus}. ${section.redline}</div>
         </div>
@@ -476,10 +239,7 @@ function render(){
         </div>
         <div>
           <div class="label">Section Score</div>
-          <div class="head-wrap">
-            <div class="big" id="${section.id}_score">0.0%</div>
-            <button type="button" class="comment-btn" data-comment-key="${section.id}_section_score" onclick="openCommentModal('${section.id}_section_score','${section.title} Section Score','Section')">+</button>
-          </div>
+          <div class="big" id="${section.id}_score">0.0%</div>
           <div class="sub" id="${section.id}_rating">Awaiting input</div>
         </div>
         <div>
@@ -488,7 +248,6 @@ function render(){
           <div class="sub">Weighted points into overall score</div>
         </div>
       </div>
-      <div class="section-body" id="section_body_${section.id}">
       <div class="table-wrap">
         <table>
           <thead>
@@ -504,28 +263,26 @@ function render(){
           <tbody>
             ${section.kpis.map(k => `
               <tr>
-                <td data-label="KPI"><strong>${k.name}</strong><div class="mini">${k.unit}</div></td>
-                <td data-label="Support Note">${k.note}</td>
-                <td data-label="Annual Target"><strong>${k.annualTarget}</strong><div class="mini">${k.better === "lower" ? "Lower is better" : k.better === "zero" ? "Zero is target" : k.better === "range" ? "Target range" : "Higher is better"}</div></td>
-                ${months.map((m,i)=>`<td data-label="${m}"><div class="cell-wrap"><input class="kpi-input" type="number" step="0.01" data-kpi="${k.id}" data-month="${i}"><button type="button" class="comment-btn" data-comment-key="${k.id}_m_${i}" onclick="openCommentModal('${k.id}_m_${i}','${k.name}','${m}')">+</button></div></td>`).join("")}
-                <td data-label="Q1" class="num"><div class="out-wrap"><span id="${k.id}_q1">-</span><button type="button" class="comment-btn output-btn" data-comment-key="${k.id}_q_1" onclick="openCommentModal('${k.id}_q_1','${k.name}','Q1')">+</button></div></td>
-                <td data-label="Q2" class="num"><div class="out-wrap"><span id="${k.id}_q2">-</span><button type="button" class="comment-btn output-btn" data-comment-key="${k.id}_q_2" onclick="openCommentModal('${k.id}_q_2','${k.name}','Q2')">+</button></div></td>
-                <td data-label="Q3" class="num"><div class="out-wrap"><span id="${k.id}_q3">-</span><button type="button" class="comment-btn output-btn" data-comment-key="${k.id}_q_3" onclick="openCommentModal('${k.id}_q_3','${k.name}','Q3')">+</button></div></td>
-                <td data-label="Q4" class="num"><div class="out-wrap"><span id="${k.id}_q4">-</span><button type="button" class="comment-btn output-btn" data-comment-key="${k.id}_q_4" onclick="openCommentModal('${k.id}_q_4','${k.name}','Q4')">+</button></div></td>
-                <td data-label="YTD" class="num"><div class="out-wrap"><span id="${k.id}_ytd">-</span><button type="button" class="comment-btn output-btn" data-comment-key="${k.id}_y" onclick="openCommentModal('${k.id}_y','${k.name}','Year / YTD')">+</button></div></td>
-                <td data-label="Score" class="num" id="${k.id}_score">-</td>
-                <td data-label="Rating" id="${k.id}_ratingcell">-</td>
+                <td><strong>${k.name}</strong><div class="mini">${k.unit}</div></td>
+                <td>${k.note}</td>
+                <td><strong>${k.annualTarget}</strong><div class="mini">${k.better === "lower" ? "Lower is better" : k.better === "zero" ? "Zero is target" : k.better === "range" ? "Target range" : "Higher is better"}</div></td>
+                ${months.map((m,i)=>`<td><input type="number" step="0.01" data-kpi="${k.id}" data-month="${i}"></td>`).join("")}
+                <td class="num" id="${k.id}_q1">-</td>
+                <td class="num" id="${k.id}_q2">-</td>
+                <td class="num" id="${k.id}_q3">-</td>
+                <td class="num" id="${k.id}_q4">-</td>
+                <td class="num" id="${k.id}_ytd">-</td>
+                <td class="num" id="${k.id}_score">-</td>
+                <td id="${k.id}_ratingcell">-</td>
               </tr>
             `).join("")}
           </tbody>
         </table>
       </div>
-      <div class="note">Use + to add commentary at monthly, quarterly, yearly, section, and overall level.</div>
-      </div>
+      <div class="note">Simple input table. No sticky overlays on cells. Edit any monthly number and the outputs recalculate.</div>
     </div>
   `).join("");
 
-  refreshCommentButtons();
   document.querySelectorAll('input[data-kpi]').forEach(input => {
     input.addEventListener('input', calculate);
     input.addEventListener('change', calculate);
@@ -590,10 +347,8 @@ function loadExample(){
   calculate();
 }
 
-loadComments();
 render();
 loadExample();
-refreshCommentButtons();
 </script>
 </body>
 </html>
